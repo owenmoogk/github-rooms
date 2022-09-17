@@ -4,7 +4,7 @@ import Login from './components/accounts/Login';
 import Signup from './components/accounts/Signup';
 import Homepage from './components/Homepage';
 import Room from './components/Rooms';
-import AddRoom from './components/AddRoom'
+import AddRoom from './components/AddRoom';
 import {
 	BrowserRouter as Router,
 	Switch,
