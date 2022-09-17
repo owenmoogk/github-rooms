@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Nav from './components/Nav';
 import Login from './components/accounts/Login';
 import Signup from './components/accounts/Signup';
+import Homepage from './components/Homepage';
 import {
 	BrowserRouter as Router,
 	Switch,
@@ -53,11 +54,12 @@ export default function App(props) {
 					<Signup setLoggedIn={setLoggedIn} setUsername={setUsername} />
 				</Route>
 				<Route path=''>
-					<h3>
+					{/* <h3>
 						{loggedIn
 							? `Hello, ${username}`
 							: 'Not logged in'}
-					</h3>
+					</h3> */}
+					<Homepage />
 				</Route>
 			</Switch>
 		</Router>
