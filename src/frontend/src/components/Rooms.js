@@ -5,26 +5,6 @@ import {getCookie} from './csrf'
 export default function Rooms(props) {
     const { id } = useParams();
 
-    function makeNewRoom(){
-        
-        const newRoomOptions = {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json',
-                // 'Authorization': `JWT ${localStorage.getItem('token')}`,
-                'X-CSRFToken': getCookie('csrftoken')
-            },
-            body: JSON.stringify({
-              name: 'insertRoomNameHere',
-              location: "insertRoomLocationHere"
-            }),
-        };
-        
-        fetch("/api/room/", newRoomOptions)
-            .then((response) => response.json())
-            .then((data) => console.log(data));
-    }
-
     function getRoom(roomNumber){
         fetch("/api/room/"+ roomNumber)
             .then((response) => response.json())
