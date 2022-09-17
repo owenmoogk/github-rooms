@@ -1,0 +1,24 @@
+#roomPage{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.addRoomInput{
+  margin-top: 20px;
+}
+
+button{
+  border-radius: 25px;
+  height: 50px;
+  width: 200px;
+  padding: 0 30px;
+  margin: 0;
+  transition-duration: 0.3s;
+}
+
+button:hover{
+  background-color: lightgrey;
+  transform: scale(1.1);
+}

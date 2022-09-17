@@ -4,10 +4,8 @@ export default function Nav(props) {
 
     const logged_out_nav = (
         <ul>
-            <a href='/'>home</a>
-            <br />
+            <a href='/'>Github Rooms</a>
             <a href='/login'>login</a>
-            <br />
             <a href='/signup'>signup</a>
         </ul>
     );

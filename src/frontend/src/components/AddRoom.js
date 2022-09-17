@@ -1,13 +1,20 @@
 import React, { useState } from 'react';
+import './addroom.css'
 import { getCookie } from './csrf'
 
 export default function AddRoom(props) {
+
+    const [error, setError] = useState()
+
     function makeNewRoom(name, location) {
+        if (!name || !location){
+            setError('Please fill in all fields.')
+            return
+        }
         fetch("/api/room/", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
-                // 'Authorization': `JWT ${localStorage.getItem('token')}`,
                 'X-CSRFToken': getCookie('csrftoken')
             },
             body: JSON.stringify({
@@ -16,29 +23,37 @@ export default function AddRoom(props) {
             }),
         })
             .then((response) => response.json())
-            .then((data) => console.log(data));
+            .then((data) => {
+                window.location.href = "http://127.0.0.1:8000/room/" + data.id
+            });
     }
 
     return (
-        <>
-            <h4>Add Room</h4>
-            <h5>Room name</h5>
+        <div id='roomPage'>
+            <h1>Add Room</h1>
+            <br/>
+            <br/>
             <input
+                className='addRoomInput'
                 id='name-input'
                 type='text'
                 name='Add Room'
+                placeholder='Room Name (eg. 123456)'
             />
-            <h5>Location</h5>
             <input
+                className='addRoomInput'
                 id='location-input'
                 type='text'
                 name='Add Room'
+                placeholder='Location (eg. University of Waterloo)'
             />
             <br/>
+            <span id='error'>{error}</span>
             <br/>
-            <input type='submit' onClick={() => makeNewRoom(
+            <button type='submit' onClick={() => makeNewRoom(
                 document.getElementById('name-input').value,
-                document.getElementById('location-input').value)} />
-        </>
+                document.getElementById('location-input').value
+            )}>Make Room!</button>
+        </div>
     )
 }

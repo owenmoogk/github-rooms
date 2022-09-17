@@ -28,3 +28,7 @@ input{
   width: 300px;
   padding: 0 30px;
 }
+
+#error{
+  color: red;
+}
