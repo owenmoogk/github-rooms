@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom'
-import {getCookie} from './csrf'
 
 export default function Rooms(props) {
     const { id } = useParams();

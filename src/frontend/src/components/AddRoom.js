@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
+import {getCookie} from './csrf'
 
 export default function AddRoom(props) {
-    function makeNewRoom(){
-        
+    function makeNewRoom() {
+
         const newRoomOptions = {
             method: "POST",
             headers: {
@@ -11,11 +12,11 @@ export default function AddRoom(props) {
                 'X-CSRFToken': getCookie('csrftoken')
             },
             body: JSON.stringify({
-              name: 'insertRoomNameHere',
-              location: "insertRoomLocationHere"
+                name: 'insertRoomNameHere',
+                location: "insertRoomLocationHere"
             }),
         };
-        
+
         fetch("/api/room/", newRoomOptions)
             .then((response) => response.json())
             .then((data) => console.log(data));
@@ -34,7 +35,7 @@ export default function AddRoom(props) {
                 value={roomnumber}
                 onChange={e => setRoomnumber(e.target.value)}
             />
-            <input type='submit'/>
+            <input type='submit' />
         </form>
     )
 }
