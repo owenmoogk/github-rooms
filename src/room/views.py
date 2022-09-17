@@ -26,9 +26,5 @@ class Room(APIView):
         location=request.data.get('location'),
       )
       room.save()
-
-      # making the qr code
-      img = qrcode.make('http://127.0.0.1:8000/room/'+room.pk)
-      img.save(room.pk+'.png')
       
-      return Response({'name':room.name, "location":room.location, 'id': room.pk, 'qrCodeUrl': room.pk + '.png'})
+      return Response({'name':room.name, "location":room.location, 'id': room.pk})
