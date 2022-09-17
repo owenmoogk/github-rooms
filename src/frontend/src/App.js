@@ -4,6 +4,7 @@ import Login from './components/accounts/Login';
 import Signup from './components/accounts/Signup';
 import Homepage from './components/Homepage';
 import Room from './components/Rooms';
+import AddRoom from './components/AddRoom'
 import {
 	BrowserRouter as Router,
 	Switch,
@@ -56,6 +57,9 @@ export default function App(props) {
 				</Route>
 				<Route path="/room/:id">
 					<Room/>
+				</Route>
+				<Route path="/addroom">
+					<AddRoom/>
 				</Route>
 				<Route path=''>
 					{/* <h3>
