@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {getCookie} from './csrf'
+import { getCookie } from './csrf'
 
 export default function AddRoom(props) {
     function makeNewRoom() {
@@ -22,20 +22,14 @@ export default function AddRoom(props) {
             .then((data) => console.log(data));
     }
 
-    function handleAddRoom(e) {
-        e.preventDefault()
-    }
-    const [roomnumber, setRoomnumber] = useState()
     return (
-        <form onSubmit={e => handleAddRoom(e)}>
+        <>
             <h4>Add Room</h4>
             <input
                 type='number'
                 name='Add Room'
-                value={roomnumber}
-                onChange={e => setRoomnumber(e.target.value)}
             />
-            <input type='submit' />
-        </form>
+            <input type='submit' onClick={() => makeNewRoom()}/>
+        </>
     )
 }
