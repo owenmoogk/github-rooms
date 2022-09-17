@@ -3,6 +3,7 @@ import Nav from './components/Nav';
 import Login from './components/accounts/Login';
 import Signup from './components/accounts/Signup';
 import Homepage from './components/Homepage';
+import Room from './components/Rooms';
 import {
 	BrowserRouter as Router,
 	Switch,
@@ -29,10 +30,10 @@ export default function App(props) {
 			})
 				.then(response => response.json())
 				.then(json => {
-					if (json.username){
+					if (json.username) {
 						setUsername(json.username)
 					}
-					else{
+					else {
 						handleLogout()
 					}
 				});
@@ -52,6 +53,9 @@ export default function App(props) {
 				</Route>
 				<Route path="/signup">
 					<Signup setLoggedIn={setLoggedIn} setUsername={setUsername} />
+				</Route>
+				<Route path="/room/:id">
+					<Room/>
 				</Route>
 				<Route path=''>
 					{/* <h3>
