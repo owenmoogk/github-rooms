@@ -5,5 +5,6 @@ urlpatterns = [
     path('login/', index),
     path('signup/', index),
     path('room/<int:id>', index),
+    path('addroom/', index),
     path('', index),
 ]
