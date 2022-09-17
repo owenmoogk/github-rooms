@@ -1,18 +1,9 @@
 from rest_framework import permissions, status
-from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework_jwt.settings import api_settings
-from django.contrib.auth.models import User
 from room.models import Room as RoomModel
-from django.template import RequestContext
-import qrcode
 
-
-# Create your views here.
 class Room(APIView):
-
-    permission_classes = (permissions.AllowAny,)
 
     def get(self, request, **kwargs):
 
