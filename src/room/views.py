@@ -6,6 +6,7 @@ from rest_framework_jwt.settings import api_settings
 from django.contrib.auth.models import User
 from room.models import Room as RoomModel
 from django.template import RequestContext
+import qrcode
 
 
 # Create your views here.
@@ -20,6 +21,14 @@ class Room(APIView):
       return Response({'name': room.name, 'id': room.pk, "location": room.location})
       
     def post(self, request):
-      room = RoomModel(name=request.data.get('name'), location=request.data.get('location'))
+      room = RoomModel(
+        name=request.data.get('name'), 
+        location=request.data.get('location'),
+      )
       room.save()
-      return Response({'name':room.name, "location":room.location, 'id': room.pk})
+
+      # making the qr code
+      img = qrcode.make('http://127.0.0.1:8000/room/'+room.pk)
+      img.save(room.pk+'.png')
+      
+      return Response({'name':room.name, "location":room.location, 'id': room.pk, 'qrCodeUrl': room.pk + '.png'})
