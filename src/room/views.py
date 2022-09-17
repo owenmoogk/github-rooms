@@ -5,6 +5,8 @@ from room.models import Room as RoomModel
 
 class Room(APIView):
 
+    permission_classes = (permissions.AllowAny,)
+
     def get(self, request, **kwargs):
 
       room = RoomModel.objects.get(pk=kwargs.get('id'))
