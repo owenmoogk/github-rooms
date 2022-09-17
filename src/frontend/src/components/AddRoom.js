@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import { getCookie } from './csrf'
 
 export default function AddRoom(props) {
-    function makeNewRoom() {
-
-        const newRoomOptions = {
+    function makeNewRoom(name, location) {
+        fetch("/api/room/", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
@@ -12,12 +11,10 @@ export default function AddRoom(props) {
                 'X-CSRFToken': getCookie('csrftoken')
             },
             body: JSON.stringify({
-                name: 'insertRoomNameHere',
-                location: "insertRoomLocationHere"
+                name: name,
+                location: location
             }),
-        };
-
-        fetch("/api/room/", newRoomOptions)
+        })
             .then((response) => response.json())
             .then((data) => console.log(data));
     }
@@ -25,11 +22,23 @@ export default function AddRoom(props) {
     return (
         <>
             <h4>Add Room</h4>
+            <h5>Room name</h5>
             <input
-                type='number'
+                id='name-input'
+                type='text'
                 name='Add Room'
             />
-            <input type='submit' onClick={() => makeNewRoom()}/>
+            <h5>Location</h5>
+            <input
+                id='location-input'
+                type='text'
+                name='Add Room'
+            />
+            <br/>
+            <br/>
+            <input type='submit' onClick={() => makeNewRoom(
+                document.getElementById('name-input').value,
+                document.getElementById('location-input').value)} />
         </>
     )
 }
