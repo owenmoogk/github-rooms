@@ -56,7 +56,7 @@ export default function App(props) {
 					<Signup setLoggedIn={setLoggedIn} setUsername={setUsername} />
 				</Route>
 				<Route path="/room/:id">
-					<Room/>
+					<Room loggedIn={loggedIn}/>
 				</Route>
 				<Route path="/addroom">
 					<AddRoom/>

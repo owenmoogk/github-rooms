@@ -20,8 +20,8 @@ export default function Rooms(props) {
 
     function postProjectData(apiURL) {
         // validate url
-        var data = {method: "GET"}
-        if (localStorage.getItem('apikey')){
+        var data = { method: "GET" }
+        if (localStorage.getItem('apikey')) {
             data["authorization"] = "token " + localStorage.getItem('apikey')
         }
         fetch(apiURL, data)
@@ -63,16 +63,19 @@ export default function Rooms(props) {
                         <p>Location: {roomData.location}</p>
                         <p>ID: {roomData.id}</p>
                         <QRCode value={"http://127.0.0.1:8000/room/" + id} />
-                        <h2>List of commits</h2>
-                        <button onClick={() => postProjectData("https://api.github.com/repos/" + document.getElementById('addProjectInput').value)}>Add Project</button>
-                        <span style={{ color: 'red', marginTop: '10px' }}>{error}</span>
-                        <br />
-                        <input
-                            id='addProjectInput'
-                            type='text'
-                            name='Add Project'
-                            placeholder='Project name (e.g. owenmoogk/github-rooms)'
-                        />
+                        {
+                            props.loggedIn ? <>
+                                <button onClick={() => postProjectData("https://api.github.com/repos/" + document.getElementById('addProjectInput').value)}>Add Project</button>
+                                <span style={{ color: 'red', marginTop: '10px' }}>{error}</span>
+                                <br />
+                                <input
+                                    id='addProjectInput'
+                                    type='text'
+                                    name='Add Project'
+                                    placeholder='Project name (e.g. owenmoogk/github-rooms)'
+                                />
+                            </> : null
+                        }
                         <h2>Projects made here!</h2>
                         {roomData.projects.map((url) => {
                             return <p>{url}</p>
