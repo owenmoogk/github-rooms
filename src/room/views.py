@@ -9,7 +9,10 @@ class Room(APIView):
 
     def get(self, request, **kwargs):
 
-      room = RoomModel.objects.get(pk=kwargs.get('id'))
+      try:
+        room = RoomModel.objects.get(pk=kwargs.get('id'))
+      except Exception:
+        return Response({"failure": True})
 
       return Response({'name': room.name, 'id': room.pk, "location": room.location})
       
