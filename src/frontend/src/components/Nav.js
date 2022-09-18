@@ -1,12 +1,14 @@
 import React from 'react';
+import './Nav.css'
 
 export default function Nav(props) {
 
     const logged_out_nav = (
         <ul>
             <a href='/'>Github Rooms</a>
-            <a href='/login'>login</a>
-            <a href='/signup'>signup</a>
+            <a href='/login'>Login</a>
+            <a href='/signup'>Sign Up</a>
+            <a href='/addroom'>Add Room</a>
         </ul>
     );
 
@@ -14,7 +16,7 @@ export default function Nav(props) {
         <ul>
             <a href='/'>home</a>
             <br />
-            <a onClick={props.handleLogout}>logout</a>
+            <a onClick={props.handleLogout}>Logout</a>
         </ul>
     );
 
