@@ -2,6 +2,7 @@ from rest_framework import permissions, status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from room.models import Room as RoomModel
+from projects.models import Project as ProjectModel
 
 class Room(APIView):
 
@@ -13,8 +14,13 @@ class Room(APIView):
         room = RoomModel.objects.get(pk=kwargs.get('id'))
       except Exception:
         return Response({"failure": True})
-
-      return Response({'name': room.name, 'id': room.pk, "location": room.location})
+      
+      projects = ProjectModel.objects.filter(room = room)
+      apiLinks = []
+      for i in projects:
+        apiLinks.append(i.apiURL)
+      
+      return Response({'name': room.name, 'id': room.pk, "location": room.location, 'projects': apiLinks})
       
     def post(self, request):
       room = RoomModel(

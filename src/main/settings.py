@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'users',
     'frontend',
     'room',
-    'projects'
+    'projects',
 ]
 
 MIDDLEWARE = [
@@ -146,6 +146,7 @@ REST_FRAMEWORK = {
 
 CORS_ORIGIN_WHITELIST = (
     'http://127.0.0.1:8000',
+    'https://api.github.com'
 )
 
 JWT_AUTH = {

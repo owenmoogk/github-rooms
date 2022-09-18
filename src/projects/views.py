@@ -17,7 +17,6 @@ class Project(APIView):
       return Response({'id': project.pk, 'user': project.user, "apiURL": project.apiURL})
       
     def post(self, request):
-      project = ProjectModel()
+      project = ProjectModel(user = request.user, apiURL = request.data.get('apiURL'))
       project.save()
-      
       return Response({'status':'success'})

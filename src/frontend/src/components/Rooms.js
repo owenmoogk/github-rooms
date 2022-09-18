@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom'
 import QRCode from "react-qr-code";
+import { getCookie } from './csrf';
 import './rooms.css'
 
 export default function Rooms(props) {
     const { id } = useParams()
     const [roomData, setRoomData] = useState({})
-    const [showAddProjectMenu, setShowAddProjectMenu] = useState(false)
+    const [error, setError] = useState()
 
     function getRoomData(roomNumber) {
         fetch("/api/room/" + roomNumber)
@@ -17,6 +18,37 @@ export default function Rooms(props) {
             })
     }
 
+    function postProjectData(apiURL) {
+        // validate url
+        fetch(apiURL, {
+            method: "GET",
+            headers: {
+                "authorization": "token " + localStorage.getItem('apikey'),
+            }
+        })
+            .then(response => {
+                if (response.status == 200) {
+                    fetch("/projects/project/", {
+                        method: "POST",
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': getCookie('csrftoken'),
+                        },
+                        body: JSON.stringify({
+                            apiURL: apiURL,
+                        }),
+                    })
+                        .then((response) => response.json())
+                        .then((data) => {
+                            console.log(data)
+                        });
+                }
+                else {
+                    setError('Error accessing repo.')
+                }
+            })
+    }
+
     useEffect(() => {
         getRoomData(id);
     }, [])
@@ -24,28 +56,23 @@ export default function Rooms(props) {
     return (
         <div id='roompage'>
             {
-                roomData.name ? <>
-                    <p>Name: {roomData.name}</p>
-                    <p>Location: {roomData.location}</p>
-                    <p>ID: {roomData.id}</p>
-                    <QRCode value={"http://127.0.0.1:8000/room/" + id} />
-                    {showAddProjectMenu ?
-                        <>
-                            <h2>List of commits</h2>
-                        </>
-                        :
-                        <>
-                            <button onClick={() => { setShowAddProjectMenu(true) }}>Add Project</button>
-                            <br/>
-                            <input
-                                id='addProjectInput'
-                                type='text'
-                                name='Add Project'
-                                placeholder='Project name (e.g. owenmoogk/github-rooms)'
-                            />
-                        </>
-                    }
-                </>
+                roomData.name ?
+                    <>
+                        <p>Name: {roomData.name}</p>
+                        <p>Location: {roomData.location}</p>
+                        <p>ID: {roomData.id}</p>
+                        <QRCode value={"http://127.0.0.1:8000/room/" + id} />
+                        <h2>List of commits</h2>
+                        <button onClick={() => postProjectData("https://api.github.com/repos/" + document.getElementById('addProjectInput').value)}>Add Project</button>
+                        <span style={{ color: 'red', marginTop: '10px' }}>{error}</span>
+                        <br />
+                        <input
+                            id='addProjectInput'
+                            type='text'
+                            name='Add Project'
+                            placeholder='Project name (e.g. owenmoogk/github-rooms)'
+                        />
+                    </>
                     : roomData.failure ?
                         <>
                             <h1>Github Rooms</h1>
