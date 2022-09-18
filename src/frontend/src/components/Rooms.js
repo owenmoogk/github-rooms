@@ -32,8 +32,9 @@ export default function Rooms(props) {
                 : 
                 <>
                     <h1>Github Rooms</h1>
+                    <br/>
                     <p>Room does not exist :(</p>
-                    <p>Redirecting you to the <a href="/">homepage</a></p>
+                    <p>Redirecting you to the homepage.</p>
                     <div style={{display: 'none'}}>{setTimeout(() => window.location.href = "http://127.0.0.1:8000/", 3000)}</div>
                 </>
             }
