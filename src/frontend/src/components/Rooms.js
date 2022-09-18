@@ -20,12 +20,11 @@ export default function Rooms(props) {
 
     function postProjectData(apiURL) {
         // validate url
-        fetch(apiURL, {
-            method: "GET",
-            headers: {
-                "authorization": "token " + localStorage.getItem('apikey'),
-            }
-        })
+        var data = {method: "GET"}
+        if (localStorage.getItem('apikey')){
+            data["authorization"] = "token " + localStorage.getItem('apikey')
+        }
+        fetch(apiURL, data)
             .then(response => {
                 if (response.status == 200) {
                     fetch("/projects/project/", {
