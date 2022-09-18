@@ -43,7 +43,8 @@ INSTALLED_APPS = [
 
     'users',
     'frontend',
-    'room'
+    'room',
+    'projects'
 ]
 
 MIDDLEWARE = [
