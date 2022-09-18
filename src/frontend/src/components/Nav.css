@@ -1,3 +1,10 @@
-a {
-    padding: 1em !important
+#nav a {
+    text-decoration: none;
+    color: black;
+    padding: 1em !important;
+    font-size: 20px;
+}
+
+#nav a:hover{
+    font-weight: bold;
 }
