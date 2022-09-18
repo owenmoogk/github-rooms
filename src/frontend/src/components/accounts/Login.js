@@ -44,6 +44,8 @@ export default function LoginForm(props) {
                 alignItems: "center"
             }}>
                 <h1>Login</h1>
+                <br></br>
+                <br></br>
                 <input
                 className='addRoomInput'
                     type="text"
@@ -52,7 +54,6 @@ export default function LoginForm(props) {
                     onChange={e => setUsername(e.target.value)}
                     placeholder='Username'
                 />
-                <br/>
                 <input
                 className='addRoomInput'
                     type="password"
@@ -61,7 +62,6 @@ export default function LoginForm(props) {
                     onChange={e => setPassword(e.target.value)}
                     placeholder='Password'
                 />
-                <br/>
 
                 <input type="submit" style={{marginTop: "20px", width: "150px"}} />
             </form>
