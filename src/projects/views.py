@@ -17,6 +17,11 @@ class Project(APIView):
       return Response({'id': project.pk, 'user': project.user, "apiURL": project.apiURL})
       
     def post(self, request):
-      project = ProjectModel(user = request.user, apiURL = request.data.get('apiURL'))
-      project.save()
+      if request.user.is_anonymous:
+        project = ProjectModel(apiURL = request.data.get('apiURL'))
+        project.save()
+      else:
+        project = ProjectModel(user = request.user, apiURL = request.data.get('apiURL'))
+        project.save()
+
       return Response({'status':'success'})
