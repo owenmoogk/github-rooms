@@ -32,30 +32,40 @@ export default function LoginForm(props) {
     };
 
     return (
-        <>
+        <div id='login'>
             {redirect ?
                 <Redirect to='/' />
                 : null
             }
-            <form onSubmit={e => handleLogin(e)}>
-                <h4>Log In</h4>
-                <label htmlFor="username">Username</label>
+            <form onSubmit={e => handleLogin(e)} style={{
+                display: 'flex',
+                flexDirection: "column",
+                justifyContent: 'center',
+                alignItems: "center"
+            }}>
+                <h1>Login</h1>
                 <input
+                className='addRoomInput'
                     type="text"
                     name="username"
                     value={username}
                     onChange={e => setUsername(e.target.value)}
+                    placeholder='Username'
                 />
-                <label htmlFor="password">Password</label>
+                <br/>
                 <input
+                className='addRoomInput'
                     type="password"
                     name="password"
                     value={password}
                     onChange={e => setPassword(e.target.value)}
+                    placeholder='Password'
                 />
-                <input type="submit" />
+                <br/>
+
+                <input type="submit" style={{marginTop: "20px", width: "150px"}} />
             </form>
             <p>{message}</p>
-        </>
+        </div>
     );
 }
