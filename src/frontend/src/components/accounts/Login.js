@@ -63,7 +63,7 @@ export default function LoginForm(props) {
                     placeholder='Password'
                 />
 
-                <input type="submit" style={{marginTop: "20px", width: "150px"}} />
+                <input type="submit" />
             </form>
             <p>{message}</p>
         </div>

@@ -9,7 +9,7 @@
   margin-top: 20px;
 }
 
-button{
+button, input[type=submit]{
   border-radius: 25px;
   height: 50px;
   width: 150px;
@@ -19,7 +19,7 @@ button{
   transition-duration: 0.3s;
 }
 
-button:hover{
+button:hover, input[type=submit]:hover{
   background-color: lightgrey;
   transform: scale(1.1);
 }

@@ -47,9 +47,7 @@ export default function AddRoom(props) {
                 name='Add Room'
                 placeholder='Location (eg. University of Waterloo)'
             />
-            <br/>
             <span id='error'>{error}</span>
-            <br/>
             <button type='submit' onClick={() => makeNewRoom(
                 document.getElementById('name-input').value,
                 document.getElementById('location-input').value
