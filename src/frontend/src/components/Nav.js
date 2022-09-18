@@ -14,8 +14,8 @@ export default function Nav(props) {
 
     const logged_in_nav = (
         <ul>
-            <a href='/'>home</a>
-            <br />
+            <a href='/'>Github Rooms</a>
+            <a href="/addroom">Add Room</a>
             <a onClick={props.handleLogout}>Logout</a>
         </ul>
     );

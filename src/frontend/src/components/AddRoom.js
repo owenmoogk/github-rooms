@@ -38,7 +38,7 @@ export default function AddRoom(props) {
                 id='name-input'
                 type='text'
                 name='Add Room'
-                placeholder='Room Name (eg. 123456)'
+                placeholder='Room Name (eg. Quiet Hacking Space)'
             />
             <input
                 className='addRoomInput'
