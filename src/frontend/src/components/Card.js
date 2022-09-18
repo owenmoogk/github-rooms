@@ -70,7 +70,8 @@ export default function GithubCard(props) {
 				'fontSize': '14px',
 				'lineHeight': '1.5',
 				'color': '#24292e',
-				'width': '300px'
+				'width': '300px',
+        "margin": "20px"
 			}}>
 				<div style={{
 					'display': 'flex',

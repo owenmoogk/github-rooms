@@ -16,7 +16,6 @@ export default function Nav(props) {
         <ul id='nav'>
             <a href='/'>Home</a>
             <a href="/addroom">Add Room</a>
-            <a href='/recent'>Recent Commits</a>
             <a onClick={props.handleLogout}>Logout</a>
         </ul>
     );

@@ -21,9 +21,9 @@ export default function Rooms(props) {
 
     function postProjectData(apiURL) {
         // validate url
-        var data = {method: "GET"}
-        if (localStorage.getItem('apikey')){
-            data["headers"] = {"authorization":"token " + localStorage.getItem('apikey')}
+        var data = { method: "GET" }
+        if (localStorage.getItem('apikey')) {
+            data["headers"] = { "authorization": "token " + localStorage.getItem('apikey') }
         }
         fetch(apiURL, data)
             .then(response => {
@@ -60,14 +60,16 @@ export default function Rooms(props) {
             {
                 roomData.name ?
                     <>
-                        <p>Name: {roomData.name}</p>
-                        <p>Location: {roomData.location}</p>
-                        <p>ID: {roomData.id}</p>
+                    <div id='splitscreen' style={{display:"flex"}}>
                         <QRCode value={"http://127.0.0.1:8000/room/" + id} />
-                        {
+                        <div style={{display: 'flex', flexDirection: "column", marginLeft: "20px"}}>
+                            <span style={{fontSize: '35px', fontWeight: 'bold'}}> {roomData.name}</span>
+                            <span style={{fontSize: '25px'}}><b>Location:</b> {roomData.location}</span>
+                            <span style={{fontSize: '25px'}}><b>ID:</b> {roomData.id}</span>
+                            {
                             props.loggedIn ? <>
                                 <button onClick={() => postProjectData("https://api.github.com/repos/" + document.getElementById('addProjectInput').value)}>Add Project</button>
-                                <span style={{ color: 'red', marginTop: '10px' }}>{error}</span>
+                                <span style={{ color: 'red', marginTop: '0px' }}>{error}</span>
                                 <br />
                                 <input
                                     id='addProjectInput'
@@ -77,9 +79,12 @@ export default function Rooms(props) {
                                 />
                             </> : null
                         }
+                        </div>
+                    </div>
+                        
                         <h2>Projects made here!</h2>
                         <div id='cardHolder'>
-                            {roomData.projects.map(url => <GithubCard apiURL={url}/>)}
+                            {roomData.projects.map(url => <GithubCard apiURL={url} />)}
                         </div>
 
                     </>
