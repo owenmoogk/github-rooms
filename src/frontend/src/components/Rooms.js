@@ -71,6 +71,13 @@ export default function Rooms(props) {
                             name='Add Project'
                             placeholder='Project name (e.g. owenmoogk/github-rooms)'
                         />
+                        <h2>Projects made here!</h2>
+                        {roomData.projects.map((url) => {
+                            return <p>{url}</p>
+                        })
+
+                        }
+
                     </>
                     : roomData.failure ?
                         <>

@@ -5,7 +5,7 @@ from .models import Project as ProjectModel
 
 class Project(APIView):
 
-    # permission_classes = (permissions.AllowAny,)
+    permission_classes = (permissions.AllowAny,)
 
     def get(self, request, **kwargs):
 
