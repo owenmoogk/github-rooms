@@ -32,6 +32,7 @@ export default function Rooms(props) {
                         headers: {
                             'Content-Type': 'application/json',
                             'X-CSRFToken': getCookie('csrftoken'),
+                            Authorization: `JWT ${localStorage.getItem('token')}`
                         },
                         body: JSON.stringify({
                             apiURL: apiURL,
