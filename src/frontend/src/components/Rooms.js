@@ -36,6 +36,7 @@ export default function Rooms(props) {
                         },
                         body: JSON.stringify({
                             apiURL: apiURL,
+                            room: id
                         }),
                     })
                         .then((response) => response.json())
