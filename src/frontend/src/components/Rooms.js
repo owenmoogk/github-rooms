@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import QRCode from "react-qr-code";
 import { getCookie } from './csrf';
 import './rooms.css'
+import GithubCard from './Card';
 
 export default function Rooms(props) {
     const { id } = useParams()
@@ -20,9 +21,9 @@ export default function Rooms(props) {
 
     function postProjectData(apiURL) {
         // validate url
-        var data = { method: "GET" }
-        if (localStorage.getItem('apikey')) {
-            data["authorization"] = "token " + localStorage.getItem('apikey')
+        var data = {method: "GET"}
+        if (localStorage.getItem('apikey')){
+            data["headers"] = {"authorization":"token " + localStorage.getItem('apikey')}
         }
         fetch(apiURL, data)
             .then(response => {
@@ -41,7 +42,7 @@ export default function Rooms(props) {
                     })
                         .then((response) => response.json())
                         .then((data) => {
-                            console.log(data)
+                            location.reload()
                         });
                 }
                 else {
@@ -77,11 +78,9 @@ export default function Rooms(props) {
                             </> : null
                         }
                         <h2>Projects made here!</h2>
-                        {roomData.projects.map((url) => {
-                            return <p>{url}</p>
-                        })
-
-                        }
+                        <div id='cardHolder'>
+                            {roomData.projects.map(url => <GithubCard apiURL={url}/>)}
+                        </div>
 
                     </>
                     : roomData.failure ?
