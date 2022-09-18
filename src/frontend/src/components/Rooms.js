@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom'
 import QRCode from "react-qr-code";
+import './rooms.css'
 
 export default function Rooms(props) {
     const { id } = useParams()
@@ -20,11 +21,22 @@ export default function Rooms(props) {
     }, []);
 
     return (
-        <>
-            <p>Name: {roomData.name}</p>
-            <p>Location: {roomData.location}</p>
-            <p>ID: {roomData.id}</p>
-            <QRCode value={"http://127.0.0.1:8000/room/"+id} />
-        </>
+        <div id='roompage'>
+            {
+                roomData.name ? <>
+                    <p>Name: {roomData.name}</p>
+                    <p>Location: {roomData.location}</p>
+                    <p>ID: {roomData.id}</p>
+                    <QRCode value={"http://127.0.0.1:8000/room/"+id} />
+                </>
+                : 
+                <>
+                    <h1>Github Rooms</h1>
+                    <p>Room does not exist :(</p>
+                    <p>Redirecting you to the <a href="/">homepage</a></p>
+                    <div style={{display: 'none'}}>{setTimeout(() => window.location.href = "http://127.0.0.1:8000/", 3000)}</div>
+                </>
+            }
+        </div>
     );
 }

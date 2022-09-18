@@ -1,0 +1,10 @@
+#roompage{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#roompage p{
+  font-size: 20px;
+}
