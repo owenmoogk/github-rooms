@@ -6,9 +6,9 @@ import Homepage from './components/Homepage';
 import Room from './components/Rooms';
 import AddRoom from './components/AddRoom';
 import {
-	BrowserRouter as Router,
-	Switch,
-	Route
+	BrowserRouter ,
+	Route,
+	Routes
 } from 'react-router-dom'
 
 export default function App(props) {
@@ -43,33 +43,15 @@ export default function App(props) {
 
 	return (
 
-		<Router>
-			<Nav
-				loggedIn={loggedIn}
-				handleLogout={handleLogout}
-			/>
-			<Switch>
-				<Route path="/login">
-					<Login setLoggedIn={setLoggedIn} setUsername={setUsername} />
-				</Route>
-				<Route path="/signup">
-					<Signup setLoggedIn={setLoggedIn} setUsername={setUsername} />
-				</Route>
-				<Route path="/room/:id">
-					<Room loggedIn={loggedIn}/>
-				</Route>
-				<Route path="/addroom">
-					<AddRoom/>
-				</Route>
-				<Route path=''>
-					{/* <h3>
-						{loggedIn
-							? `Hello, ${username}`
-							: 'Not logged in'}
-					</h3> */}
-					<Homepage />
-				</Route>
-			</Switch>
-		</Router>
+		<BrowserRouter>
+			<Nav loggedIn={handleLogout} handleLogout={handleLogout} />
+			<Routes>
+				<Route path="/login" element={<Login setLoggedIn={setLoggedIn} setUsername={setUsername} />} />
+				<Route path="/signup" element={<Signup setLoggedIn={setLoggedIn} setUsername={setUsername} />} />
+				<Route path="/room/:id" element={<Room loggedIn={loggedIn} />} />
+				<Route path="/add-room" element={<AddRoom />} />
+				<Route path="/" element={<Homepage />} />
+			</Routes>
+		</BrowserRouter>
 	);
 }

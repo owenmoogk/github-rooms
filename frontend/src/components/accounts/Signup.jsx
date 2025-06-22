@@ -1,5 +1,5 @@
-import { Redirect } from 'react-router';
-import React, { useState } from 'react';
+import { useState } from 'react';
+import { Navigate } from 'react-router-dom';
 
 export default function Signup(props) {
 
@@ -34,7 +34,7 @@ export default function Signup(props) {
     return (
         <div id='signup'>
             {redirect ?
-                <Redirect to='/' />
+                <Navigate to='/' />
                 : null
             }
             <form onSubmit={e => handleSignup(e)} style={{
